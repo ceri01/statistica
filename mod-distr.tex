@@ -1,0 +1,71 @@
+\documentclass[border=2pt]{standalone}
+
+\usepackage{amsmath} 
+\usepackage{cancel}
+\usepackage{fancyhdr}
+\usepackage{xfrac}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{minted}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+\usepgfplotslibrary{fillbetween}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.geometric}
+\usepackage{mdframed}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{framed}
+\usetikzlibrary{patterns}
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{makecell}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+% \usepackage{xcolor}
+\usepackage[table]{xcolor}
+\usepackage{amsmath} 
+\usepackage{cancel}
+\usepackage{fancyhdr}
+\usepackage{xfrac}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{minted}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+
+\begin{document}
+
+\setcellgapes{4pt}
+\begin{table}[p]
+\caption*{{Tabella 1}: Riassunto dei modelli di distribuzione}
+\begin{tabular}{r|l||c|c|c|c}
+    \makecell[r]{\textbf{\textit{Modello}}} & \textbf{\textit{Parametri}} & \textbf{\textit{F. di massa o di densità}}& \textbf{\textit{Funzione di ripartizione}} & \textbf{\textit{Valore atteso}} & \textbf{\textit{Varianza}} \\
+    \hline
+    \textbf{Bernoulli} & $X \sim B{(p)}$ & $\displaystyle p^x(1-p)^{(1-x)} I_{\{0, \, 1\}}(x)$ & \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} $(1-p)I_{[0, \, 1)}(x) + I_{(1, \, +\infty)}(x)$ \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} & $p$ & $p(1-p)$ \\
+    \hline
+    \textbf{Binomiale} & $X \sim B{(n, \, p)}$ & $\displaystyle \binom{n}{x} p^x (1-p)^{n-x} I_{\{1, \, \dots, \, n\}}(x)$ & $\displaystyle  \sum_{i=0}^{\lfloor x \rfloor} \binom n i p^i(1-p)^{n-i} I_{[0, \, n]}(x) + I_{(n, \, +\infty)}(x)$ & $n p$ & $n p(1-p)$ \\
+    \hline 
+    \textbf{Uniforme discreto} & $X \sim U{(n)}$ & $\displaystyle \frac 1n I_{\{1, \, \dots, \, n\}}(x)$ & \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} $\displaystyle \frac{\lfloor x \rfloor}{n} I_{[0, \, n)} + I_{[n, \, +\infty)}(x)$ \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} & $\displaystyle \frac 1n \frac{n(n+1)}2$ & $\displaystyle \left(\frac{n^2-1}{12}\right)^{\!\!2}$ \\
+    \hline
+    \textbf{Uniforme continuo} & $X \sim U{(a, \, b)}$ & $\displaystyle \frac{1}{b-a} I_{[a, \, b]}(x)$ & \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} $\displaystyle \frac{x-a}{b-a} I_{[a, \, b]}(x) + I_{[b, \, +\infty)}(x)$ \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} & $\displaystyle \frac{b+a}2$ & $\displaystyle \frac{(b-a)^2}{12}$ \\
+    \hline 
+    \textbf{Geometrico} & $X \sim G{(p)}$ & \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} $p(1-p)^x I_{\mathbb N \cup \{ 0\}}(x)$ \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} & $\displaystyle (1-(1-p)^{\lfloor x \rfloor + 1}) I_{\mathbb R^+}(x)$ & $\displaystyle \frac {1-p}p$ & $\displaystyle \frac{1-p}{p^2}$ \\
+    \hline 
+    \textbf{Poisson} & $X \sim P{(\lambda)}$ & $\displaystyle e^{-\lambda} \frac{\lambda^x}{x!} I_{\mathbb{N} \cup \{0\}}(x)$ & \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} [\textit{non vista}] \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} & $\displaystyle \lambda$ & $\lambda$ \\
+    \hline \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$} 
+    \textbf{Ipergeometrico} & $X \sim \mathcal H{(n, \, M, \, N)}$ & $\displaystyle \frac{\dbinom{N}{x} \dbinom{M}{n-x}}{{\dbinom {n+M}{n}}}$ & [\textit{non vista}] & $\displaystyle n \frac M N$ & $\displaystyle n \frac K N \frac{N-K}{N} \frac{N-n}{N-1}$ \\
+    \hline \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$}
+    \textbf{Esponenziale} & $X \sim E{(\lambda)}$ & $\lambda e^{-\lambda x}$ & $(1-e^{-\lambda x}) I_{\mathbb R^+ (x)}$ & $\dfrac 1 \lambda$ & $\dfrac {1}{\lambda^2}$ \\
+    \hline \phantom{$\displaystyle  \sum_{i=0}^{\lfloor x \rfloor}$}
+    \textbf{Gauss} & $X \sim G{(\mu, \, \sigma)}$ & $\displaystyle \frac{1}{\sqrt{2 \pi} \sigma} \exp{\!\left(-\frac{(x-\mu)^2}{2\sigma^2} \right)}$ & $\displaystyle \int_{-\infty}^{x} \frac{1}{\sqrt{2 \pi} \sigma} \exp{\!\left(-\frac{(x-\mu)^2}{2\sigma^2} \right)}$ & $\mu$ & $\sigma^2$ 
+\end{tabular}
+\end{table}
+\end{document}

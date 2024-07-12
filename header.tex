@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+% \usepackage{xcolor}
+\usepackage[table]{xcolor}
+\usepackage{amsmath} 
+\usepackage{cancel}
+\usepackage{fancyhdr}
+\usepackage{xfrac}
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{minted}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+% fissa le footnotes in fondo alla pagina
+\usepackage[bottom]{footmisc}
+\usetikzlibrary{decorations.pathreplacing,calligraphy}
+
+% FIX MARGINI
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={170mm, 257mm},
+left=20mm,
+top=20mm,
+}
+
+% COMANDI CUSTOM
+% \abovemargin{1pt} imposta il margine sopra una equazione \[ \] a 1 pt
+\newcommand{\abovemargin}[1]{\setlength\abovedisplayskip{#1}}
+% \s = \sigma
+\newcommand{\s}{\sigma}
+% \sumi = {\sum}_i
+\newcommand{\sumi}{{\sum}_i}
+
+% \uloosdot{parola} = parola sottolineata con lineette (utile per le footnotes)
+\newcommand{\uloosdash}[1]{%
+    \tikz[baseline=(todotted.base)]{
+        \node[inner sep=1pt,outer sep=0pt] (todotted) {#1};
+        \draw[loosely dashed] (todotted.south west) -- (todotted.south east);
+    }%
+}%
+
+% DEFINIZIONE DEGLI SNIPPET DI CODICE
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\lstdefinestyle{style}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=style}
+
+% DEFINIZIONE COLORI
+\definecolor{lightgreen}{rgb}{0.5,1,0.5}
+\definecolor{lightred}{rgb}{1,0.5,0.5}
+\definecolor{Orange}{HTML}{F58137}
+\definecolor{ForestGreen}{HTML}{009B55}
+
+\renewcommand{\figurename}{Figura}
+\newcommand{\red}[1]{\color{red}{#1}\normalcolor}
+\newcommand{\orange}[1]{\color{Orange}{#1}\normalcolor}
+\newcommand{\green}[1]{\color{ForestGreen}{#1}\normalcolor}
